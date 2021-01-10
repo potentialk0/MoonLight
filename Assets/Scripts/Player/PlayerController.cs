@@ -17,9 +17,9 @@ public class PlayerController : MonoBehaviour
     // 클릭을 통한 움직임을 위한 변수들
     Camera cam;
     Rigidbody rigidbody;
+    UI ui;
 
     Vector3 target;
-    Vector3 clickPoint;
     float arriveDist;
     Vector3 moveDir;
     float moveSpeed;
@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     bool isRunning = false;
 
     [SerializeField]
-    Skill[] skills;
+    Icon[] skills;
     TextMeshProUGUI text;
 
     [SerializeField]
@@ -44,9 +44,9 @@ public class PlayerController : MonoBehaviour
         playerModel.GetComponent<PlayerAnimation>().SetAnimation("isIdle");
 
         rigidbody = GetComponent<Rigidbody>();
+        ui = GameObject.Find("Canvas").GetComponent<UI>();
 
         target = this.gameObject.transform.position;
-        clickPoint = this.gameObject.transform.position;
         arriveDist = 0.1f;
         moveDir = Vector3.zero;
         moveSpeed = 5f;
@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
 
     public void ProcessState()
     {
-        Debug.Log("player state : " + state);
+        //Debug.Log("player state : " + state);
         switch (state)
         {
             case STATE.IDLE:
@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
     void AttackState()
 	{
         target = transform.position;
-        if (playerModel.GetComponent<PlayerAnimation>().GetAnimator(). GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f)
+        if (playerModel.GetComponent<PlayerAnimation>().IsAnimEnd())
         {
             ChangeState(STATE.IDLE);
             return;
@@ -157,15 +157,8 @@ public class PlayerController : MonoBehaviour
 
 	}
 
-    public void ToAttack()
-	{
-        ChangeState(STATE.ATTACK);
-	}
-
     public bool IsRunning()
     {
-        //if (Vector3.Distance(rigidbody.position, target) < arriveDist || state != STATE.MOVE)
-        //    return false;
         return Vector3.Distance(rigidbody.position, target) > arriveDist;
     }
 
@@ -178,21 +171,21 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            if (ui.IsUIHit()) return;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
+            
             if (Physics.Raycast(ray, out hit))
             {
+                Debug.Log(hit.transform.gameObject.ToString());
                 if (hit.transform.tag == "Ground")
                 {
-                    clickPoint = hit.point;
                     target = hit.point + new Vector3(0, rigidbody.position.y - hit.point.y, 0);
 
-                    //GameObject obj = effect;
-                    //Instantiate(obj, hit.point, Quaternion.identity);
+                    if (target != null)
+                        moveDir = (target - rigidbody.position).normalized;
                 }
             }
-            if(target != null)
-                moveDir = (target - rigidbody.position).normalized;
         }
     }
 
@@ -201,9 +194,4 @@ public class PlayerController : MonoBehaviour
         Quaternion targetRot = Quaternion.LookRotation(target - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRot, Time.deltaTime * rotSpeed);
     }
-
-    void UseSkill(int skillID)
-	{
-        skills[skillID].UseSkill();
-	}
 }

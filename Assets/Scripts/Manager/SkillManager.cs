@@ -20,21 +20,21 @@ public class SkillManager : MonoBehaviour
     }
 
     [SerializeField]
-    SkillButton[] skillButtons;
+    Slot[] skillSlots;
     [SerializeField]
-    Skill[] s;
+    GameObject[] skills;
+    
     public GameObject effect;
     public GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Skill Manager Executed");
-		for (int i = 0; i < skillButtons.Length; i++)
+		for (int i = 0; i < skillSlots.Length; i++)
 		{
-			//skillButtons[i].GetComponent<Button>().onClick.AddListener(delegate { UseSkill(i); });
-            skillButtons[i].GetComponent<Button>().onClick.AddListener(UseSkill);
+            //skillSlots[i].GetComponent<Button>().onClick.AddListener(delegate { player.GetComponent<PlayerController>().ChangeState(STATE.ATTACK); });
         }
+        
 	}
 
     // Update is called once per frame
@@ -42,6 +42,12 @@ public class SkillManager : MonoBehaviour
     {
         
     }
+
+    void ShowInt(int a)
+	{
+        Debug.Log(a);
+	}
+
     void UseSkill()
 	{
         Debug.Log("Skill Used!!");
@@ -51,6 +57,6 @@ public class SkillManager : MonoBehaviour
 
     void UseSkill(int a)
 	{
-
+        Instantiate(skills[a]);
 	}
 }

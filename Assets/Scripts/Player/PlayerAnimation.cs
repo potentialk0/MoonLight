@@ -32,13 +32,13 @@ public class PlayerAnimation : MonoBehaviour
         currAnimation = animation;
 	}
 
-    public bool IsCasting()
-	{
-        return animator.GetBool("isCasting");
-	}
-
     public Animator GetAnimator()
 	{
         return animator;
 	}
+
+    public bool IsAnimEnd()
+    {
+        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f;
+    }
 }

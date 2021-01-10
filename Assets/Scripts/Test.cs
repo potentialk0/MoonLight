@@ -9,6 +9,10 @@ public class Test : MonoBehaviour
     protected GameObject obj;
     protected Image icon;
     protected int aa = 10;
+    Canvas canvas;
+
+    public GameObject a;
+    public GameObject b;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +22,11 @@ public class Test : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.Space))
+		{
+            //Debug.Log(a.GetComponent<Text>().text);
+            //Debug.Log(b.GetComponent<Text>().text);
+        }
     }
 }
 
