@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 
 public class UI : MonoBehaviour
 {
-    GraphicRaycaster graphicRaycaster;
+    static GraphicRaycaster graphicRaycaster;
 
 	private void Awake()
 	{
@@ -39,7 +39,7 @@ public class UI : MonoBehaviour
             return true;
 	}
 
-    public Slot GetCurrentSkillSlot()
+    public static Slot GetCurrentSlot()
 	{
         PointerEventData pointerEventData = new PointerEventData(null);
         pointerEventData.position = Input.mousePosition;

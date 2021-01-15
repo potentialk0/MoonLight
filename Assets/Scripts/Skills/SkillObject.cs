@@ -4,23 +4,22 @@ using UnityEngine;
 
 public abstract class SkillObject : MonoBehaviour
 {
-    public SkillData skillData;
+    public Skill skill;
 
-    void Awake()
+	private void OnTriggerEnter(Collider other)
 	{
-        Debug.Log(skillData.value);
-    }
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+		if(other.tag == "Enemy")
+		{
+            if(other.GetComponent<StatContainer>() != null)
+                other.GetComponent<StatContainer>().GetDamage(skill.value);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
+            if(skill.onCollisionObject != null)
+			{
+                GameObject obj = skill.onCollisionObject;
+                Instantiate(obj, transform.position, Quaternion.identity);
+			}
+
+            Destroy(this.gameObject);
+		}
+	}
 }

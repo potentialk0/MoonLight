@@ -3,24 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public struct SkillData
+public enum SKILLTYPE
 {
-    [Header("◎ General")]
-    [SerializeField]
-    public float value;
-    [SerializeField]
-    public float baseCooldown;
-    [SerializeField]
-    public float attackRange;
-
-    [Header("◎ Projectile")]
-    [SerializeField]
-    public float speed;
-
-    [Header("◎ AOE")]
-    [SerializeField]
-    public float bounds;
+    PROJECTILE, AOE, BUFF,
+    NUM,
 }
 
 [CreateAssetMenu(menuName = "Scriptables/Skill")]
@@ -29,9 +15,8 @@ public class Skill : ScriptableObject
     [Header("◎ Description")]
     [Space(10f)]
     [SerializeField] string _skillName = "New Skill";
-    [SerializeField] int _skillID = 0;
-    [SerializeField]
-    [TextArea(3, 10)] string _description;
+    [SerializeField] SKILLTYPE _skillType;
+    [SerializeField] [TextArea(3, 10)] string _description;
     
     [Header("◎ Effects")]
     [Space(10f)]
@@ -40,26 +25,44 @@ public class Skill : ScriptableObject
     [SerializeField] AudioClip _sound;
 
     [Space(10f)]
-    [SerializeField] SkillData _skillData;
+    [Header("◎ General")]
+    [SerializeField] private int _value;
+    [SerializeField] private float _baseCooldown;
+    [SerializeField] private float _attackRange;
+
+    [Header("◎ Projectile")]
+    [SerializeField] GameObject _onCollisionObject;
+    [SerializeField] private float _speed;
+
+    [Header("◎ AOE")]
+    [SerializeField] private float _bounds;
+
+    [Header("◎ Buff")]
+    [SerializeField] private StatModifiers _statMod;
 
     #region Getters
-    public string skillName { get => _skillName; }// protected set => _skillName = value; }
-    public int skillID { get => _skillID; }
+    public string skillName { get => _skillName; }
+    public SKILLTYPE skillType { get => _skillType; }
     public string description { get => _description; }
 
     public GameObject skillObject { get => _skillObject; }
     public Sprite iconImage { get => _iconImage; }
     public AudioClip sound { get => _sound; }
 
-    public SkillData skillData { get => _skillData; }
+    public int value { get => _value; }
+    public float baseCooldown { get => _baseCooldown; }
+    public float attackRange { get => _attackRange; }
+    public GameObject onCollisionObject { get => _onCollisionObject; }
+    public float speed { get => _speed; }
+    public float bounds { get => _bounds; }
+    public StatModifiers statMod { get => _statMod; }
 
     #endregion
 
-    //public abstract void Initialize();
-    public void UseSkill()
+    public void Use()
 	{
         GameObject obj = skillObject;
-        obj.GetComponent<SkillObject>().skillData = this.skillData;
+        obj.GetComponent<SkillObject>().skill = this;
         Instantiate(obj);
 	}
 }

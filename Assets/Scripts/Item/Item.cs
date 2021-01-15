@@ -1,34 +1,49 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-[Serializable]
-public class Item
+public enum ITEMTYPE
+{ 
+    HELMET, ARMOR, WEAPON, POTION,
+    NUM,
+}
+
+[CreateAssetMenu(menuName = "Scriptables/Item")]
+public class Item : ScriptableObject
 {
-    public int id = -1;
-    public string name;
+    [Header("◎ Description")]
+    [Space(10f)]
+    [SerializeField] string _itemName = "New Item";
+    [SerializeField] ITEMTYPE _itemType;
+    [SerializeField] [TextArea(3, 10)] string _description;
 
-    public ItemBuff[] buffs;
+    [Header("◎ Effects")]
+    [Space(10f)]
+    [SerializeField] GameObject _itemObject;
+    [SerializeField] Sprite _iconImage;
+    [SerializeField] AudioClip _sound;
 
-    public Item()
-	{
-        id = -1;
-        name = "";
-	}
+    [Space(10f)]
+    [SerializeField] StatModifiers _statMod;
 
-    public Item(ItemObject itemObject)
-	{
-        name = itemObject.name;
-        id = itemObject.data.id;
+    #region Getters
+    public string itemName { get => _itemName; }
+    public ITEMTYPE itemType { get => _itemType; }
+    public string description { get => _description; }
 
-        buffs = new ItemBuff[itemObject.data.buffs.Length];
-        for(int i = 0; i < buffs.Length; i++)
-		{
-            buffs[i] = new ItemBuff(itemObject.data.buffs[i].Min, itemObject.data.buffs[i].Max)
-            {
-                stat = itemObject.data.buffs[i].stat
-            };
-		}
-	}
+    public GameObject itemObject { get => _itemObject; }
+    public Sprite iconImage { get => _iconImage; }
+    public AudioClip sound { get => _sound; }
+
+    public StatModifiers statMod { get => _statMod; }
+
+    #endregion
+
+    public void UseSkill()
+    {
+        //GameObject obj = skillObject;
+        //obj.GetComponent<SkillObject>().skillData = this.skillData;
+        //Instantiate(obj);
+    }
 }

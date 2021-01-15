@@ -177,7 +177,6 @@ public class PlayerController : MonoBehaviour
             
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log(hit.transform.gameObject.ToString());
                 if (hit.transform.tag == "Ground")
                 {
                     target = hit.point + new Vector3(0, rigidbody.position.y - hit.point.y, 0);

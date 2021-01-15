@@ -20,7 +20,7 @@ public class SkillIcon : Icon
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            skill.UseSkill();
+            skill.Use();
         }
     }
 
@@ -29,9 +29,10 @@ public class SkillIcon : Icon
         canvasGroup.alpha = 0.8f;
         if (eventData != null)
         {
-            previousSlot = canvas.GetComponent<UI>().GetCurrentSkillSlot();
+            previousSlot = UI.GetCurrentSlot();
             transform.SetAsLastSibling();
         }
-        skill.UseSkill();
+        skill.Use();
 	}
+
 }

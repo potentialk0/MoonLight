@@ -14,17 +14,19 @@ public class Icon : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBegi
 	protected Canvas canvas;
 	protected RectTransform rectTransform;
 	protected CanvasGroup canvasGroup;
-	Slot currentSlot;
 
-	public Slot previousSlot { get; protected set; }
+	//Slot _previousSlot;
+
+	public Slot currentSlot { get; protected set; }
+	public Slot previousSlot { get; protected set; }// => _previousSlot; protected set => _previousSlot = value; }
 
 	public ICONTYPE iconType { get; protected set; }
 
 	private void Awake()
 	{
-		rectTransform = GetComponent<RectTransform>();
-		canvas = GameObject.Find("Canvas").GetComponent<Canvas>();
-		canvasGroup = GetComponent<CanvasGroup>();
+		rectTransform	= GetComponent<RectTransform>();
+		canvas			= GameObject.Find("Canvas").GetComponent<Canvas>();
+		canvasGroup		= GetComponent<CanvasGroup>();
 	}
 
 	public virtual void OnPointerDown(PointerEventData eventData)
@@ -32,7 +34,7 @@ public class Icon : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBegi
 		canvasGroup.alpha = 0.8f;
 		if (eventData != null)
 		{
-			previousSlot = canvas.GetComponent<UI>().GetCurrentSkillSlot();
+			previousSlot = UI.GetCurrentSlot();
 			transform.SetAsLastSibling();
 		}
 	}
@@ -50,29 +52,39 @@ public class Icon : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBegi
 	public void OnPointerUp(PointerEventData eventData)
 	{
 		canvasGroup.alpha = 1.0f;
+		if (UI.GetCurrentSlot() == null)
+		{
+			GetComponent<RectTransform>().anchoredPosition = previousSlot.GetComponent<RectTransform>().anchoredPosition;
+		}
+		else
+		{
+			currentSlot = UI.GetCurrentSlot();
+		}
 	}
 
 	public void OnEndDrag(PointerEventData eventData)
 	{
 		canvasGroup.blocksRaycasts = true;
-		if(canvas.GetComponent<UI>().GetCurrentSkillSlot() == null)
-		{
-			GetComponent<RectTransform>().anchoredPosition = previousSlot.GetComponent<RectTransform>().anchoredPosition;
-		}
 	}
 
 	public void OnDrop(PointerEventData eventData)
 	{
-		if (eventData.pointerDrag != null && eventData.pointerDrag.GetComponent<Icon>().iconType == iconType)
+		SwitchIcon(eventData);
+	}
+
+	protected void SwitchIcon(PointerEventData eventData)
+	{
+		Icon dragIcon = eventData.pointerDrag.GetComponent<Icon>();
+		if (eventData.pointerDrag != null && dragIcon.iconType == iconType)
 		{
-			eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+			dragIcon.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
 			GetComponent<RectTransform>().anchoredPosition
-				= eventData.pointerDrag.GetComponent<Icon>().previousSlot.GetComponent<RectTransform>().anchoredPosition;
+				= dragIcon.previousSlot.GetComponent<RectTransform>().anchoredPosition;
 		}
 		else
 		{
-			eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition
-				= eventData.pointerDrag.GetComponent<Icon>().previousSlot.GetComponent<RectTransform>().anchoredPosition;
+			dragIcon.GetComponent<RectTransform>().anchoredPosition
+				= dragIcon.previousSlot.GetComponent<RectTransform>().anchoredPosition;
 		}
 	}
 }

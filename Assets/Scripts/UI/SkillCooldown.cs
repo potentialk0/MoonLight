@@ -76,6 +76,6 @@ public class SkillCooldown : MonoBehaviour
 
         //abilityAudio.clip = ability.sound;
         //abilityAudio.Play();
-        skill.UseSkill();
+        skill.Use();
 	}
 }

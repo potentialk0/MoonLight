@@ -4,37 +4,44 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+public enum SLOTTYPE
+{
+    SHORTCUT, UI,
+}
 
 public class Slot : MonoBehaviour, IDropHandler
 {
     Icon icon;
-    [SerializeField]
-    ICONTYPE iconType;
-
-	// Start is called before the first frame update
-	void Start()
-    {
+    [SerializeField] protected ICONTYPE iconType;
+    [SerializeField] protected SLOTTYPE slotType;
+    
+	private void Awake()
+	{
         
+	}
+
+	public void OnDrop(PointerEventData eventData)
+    {
+        SetIconInPlace(eventData);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    protected void SetIconInPlace(PointerEventData eventData)
+	{
+        Icon dragIcon = eventData.pointerDrag.GetComponent<Icon>();
 
-    public void OnDrop(PointerEventData eventData)
-    {
-        //eventData.pointerDrag
-        if (eventData.pointerDrag != null && eventData.pointerDrag.GetComponent<Icon>().iconType == iconType)
+        // 드래그하는 아이콘이 !null 이고 iconType이 slot의 iconType과 같으면
+        if (eventData.pointerDrag != null && dragIcon.iconType == iconType)
         {
-            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
-            icon = eventData.pointerDrag.GetComponent<Icon>();
+            // 드래그하는 아이콘의 anchoredPosition을 slot의 anchoredPosition으로 변경
+            dragIcon.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+            // 해당 아이콘을 슬롯에 저장
+            icon = dragIcon;
         }
         else
         {
-            eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition
-                = eventData.pointerDrag.GetComponent<Icon>().previousSlot.GetComponent<RectTransform>().anchoredPosition;
+            // 해당 아이콘의 anchoredPosition을 이전 slot의 anchoredPosition으로 변경
+            dragIcon.GetComponent<RectTransform>().anchoredPosition
+                = dragIcon.previousSlot.GetComponent<RectTransform>().anchoredPosition;
         }
     }
 }

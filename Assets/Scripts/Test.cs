@@ -13,10 +13,11 @@ public class Test : MonoBehaviour
 
     public GameObject a;
     public GameObject b;
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(GameObject.Find("Child").GetComponent<Test>().aa);
+        
     }
 
     // Update is called once per frame
