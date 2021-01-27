@@ -38777,7 +38777,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4358681491085108}
-  - component: {fileID: 114690123376909908}
   - component: {fileID: 54996475070081154}
   - component: {fileID: 135280169279589598}
   - component: {fileID: -2710779114040271354}
@@ -38796,7 +38795,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542574793492440}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.65, y: 2, z: -0.05}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4857948279428052}
@@ -38818,35 +38817,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114690123376909908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1542574793492440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12ba759cd568c0e47a7018ab70867a0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounce: 0
-  bounceForce: 10
-  speed: 20
-  accuracy: 95
-  fireRate: 2
-  muzzlePrefab: {fileID: 1463520409267208, guid: 9244f3149fb161c448eaa6a5948c9df9, type: 3}
-  hitPrefab: {fileID: 1774151147760336, guid: 709582bcba5c55b478b1fb079b6b1111, type: 3}
-  shotSFX: {fileID: 0}
-  hitSFX: {fileID: 0}
-  trails:
-  - {fileID: 1350775636860078}
-  - {fileID: 1661843948975376}
-  - {fileID: 1684881789552462}
-  - {fileID: 1861731824075578}
-  - {fileID: 1985411027510138}
-  - {fileID: 1340374609356196}
-  - {fileID: 1290923795778128}
 --- !u!54 &54996475070081154
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -38871,11 +38841,11 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1542574793492440}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.4
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 1
+  m_Center: {x: 0, y: 0, z: 7}
 --- !u!114 &-2710779114040271354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38888,6 +38858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dffbccd97955080448d6fba8cf22afce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillData: {fileID: 11400000, guid: 98ad2109de7330442ac17525c3bda84f, type: 2}
 --- !u!1 &1661843948975376
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,8 +17,8 @@ public class CharacterItemSlot : Slot, IDropHandler
     private void Awake()
 	{
         _playerStats = GameObject.Find("PlayerObject").GetComponent<StatContainer>();
-        iconType = ICONTYPE.ITEM;
-        slotType = SLOTTYPE.UI;
+        _iconType = ICONTYPE.ITEM;
+        _slotType = SLOTTYPE.UI;
 	}
 
 	// Start is called before the first frame update

@@ -6,8 +6,8 @@ public class SkillShortcutSlot : Slot
 {
     private void Awake()
     {
-        iconType = ICONTYPE.SKILL;
-        slotType = SLOTTYPE.SHORTCUT;
+        _iconType = ICONTYPE.SKILL;
+        _slotType = SLOTTYPE.SHORTCUT;
     }
 
     // Start is called before the first frame update
@@ -20,5 +20,10 @@ public class SkillShortcutSlot : Slot
     void Update()
     {
         
+    }
+
+    public void SetSkill()
+	{
+        _icon.GetComponent<SkillIcon>().GetSkillData();
     }
 }

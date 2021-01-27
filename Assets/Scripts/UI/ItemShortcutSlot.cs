@@ -6,8 +6,8 @@ public class ItemShortcutSlot : Slot
 {
 	private void Awake()
 	{
-        iconType = ICONTYPE.ITEM;
-        slotType = SLOTTYPE.SHORTCUT;
+        _iconType = ICONTYPE.ITEM;
+        _slotType = SLOTTYPE.SHORTCUT;
 	}
 
 	// Start is called before the first frame update

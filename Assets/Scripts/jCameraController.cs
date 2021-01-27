@@ -15,7 +15,7 @@ public class jCameraController : MonoBehaviour
         player      = GameObject.Find("PlayerObject");
         dir         = new Vector3(1f, 1f, -1f).normalized;
         distance    = 14f;
-        offset      = new Vector3(0, 2f, 0);
+        offset      = new Vector3(0, 4f, 0);
     }
 
     // Update is called once per frame

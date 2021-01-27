@@ -39,7 +39,7 @@ public class Icon : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBegi
 		}
 	}
 
-	public void OnBeginDrag(PointerEventData eventData)
+	public virtual void OnBeginDrag(PointerEventData eventData)
 	{
 		canvasGroup.blocksRaycasts = false;
 	}
@@ -52,19 +52,20 @@ public class Icon : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBegi
 	public void OnPointerUp(PointerEventData eventData)
 	{
 		canvasGroup.alpha = 1.0f;
+	}
+
+	public virtual void OnEndDrag(PointerEventData eventData)
+	{
+		canvasGroup.blocksRaycasts = true;
 		if (UI.GetCurrentSlot() == null)
 		{
-			GetComponent<RectTransform>().anchoredPosition = previousSlot.GetComponent<RectTransform>().anchoredPosition;
+			transform.position = previousSlot.transform.position;
+			
 		}
 		else
 		{
 			currentSlot = UI.GetCurrentSlot();
 		}
-	}
-
-	public void OnEndDrag(PointerEventData eventData)
-	{
-		canvasGroup.blocksRaycasts = true;
 	}
 
 	public void OnDrop(PointerEventData eventData)
@@ -77,14 +78,15 @@ public class Icon : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBegi
 		Icon dragIcon = eventData.pointerDrag.GetComponent<Icon>();
 		if (eventData.pointerDrag != null && dragIcon.iconType == iconType)
 		{
-			dragIcon.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
-			GetComponent<RectTransform>().anchoredPosition
-				= dragIcon.previousSlot.GetComponent<RectTransform>().anchoredPosition;
+			dragIcon.transform.position = transform.position;
+			transform.position = dragIcon.previousSlot.transform.position;
+			//dragIcon.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
+			//GetComponent<RectTransform>().anchoredPosition
+			//	= dragIcon.previousSlot.GetComponent<RectTransform>().anchoredPosition;
 		}
 		else
 		{
-			dragIcon.GetComponent<RectTransform>().anchoredPosition
-				= dragIcon.previousSlot.GetComponent<RectTransform>().anchoredPosition;
+			dragIcon.transform.position = dragIcon.previousSlot.transform.position;
 		}
 	}
 }

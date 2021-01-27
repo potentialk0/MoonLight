@@ -20,7 +20,8 @@ public class StatContainer : MonoBehaviour
     
     void Awake()
 	{
-        ClearMods();
+        if (_statData != null)
+            ClearMods();
         maxHP = _statData.GetBaseValue(STATTYPE.MAXHP);
         maxMP = _statData.GetBaseValue(STATTYPE.MAXMP);
         str = _statData.GetBaseValue(STATTYPE.STR);

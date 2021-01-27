@@ -26,7 +26,7 @@ public class UI : MonoBehaviour
     }
 
     // 캐릭터 조작 시 UI를 건드렸을 때 raycast가 작동하지 않게 하기 위해 UI를 건드렸는지 판별하는 함수
-    public bool IsUIHit()
+    public static bool IsUIHit()
 	{
         PointerEventData pointerEventData = new PointerEventData(null);
         pointerEventData.position = Input.mousePosition;
@@ -54,4 +54,19 @@ public class UI : MonoBehaviour
 
         return null;
     }
+
+    public static GameObject GetEnemy()
+	{
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit))
+		{
+            if(hit.transform.gameObject.tag == "Enemy")
+			{
+                return hit.transform.gameObject;
+			}
+		}
+
+        return null;
+	}
 }

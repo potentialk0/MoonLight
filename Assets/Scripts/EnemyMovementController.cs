@@ -13,8 +13,8 @@ public class EnemyMovementController : MonoBehaviour
     Animator animator;
     STATE state;
 
-    float walkSpeed = 5.0f;// 1.5f;
-    float runSpeed = 5.0f; //2.0f;
+    float walkSpeed = 2.0f;// 1.5f;
+    float runSpeed = 3.0f; //2.0f;
     float rotSpeed = 1.0f;
 
     int isWalkingHash;

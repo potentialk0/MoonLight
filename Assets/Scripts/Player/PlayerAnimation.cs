@@ -39,6 +39,11 @@ public class PlayerAnimation : MonoBehaviour
 
     public bool IsAnimEnd()
     {
-        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1.0f;
+        return animator.GetCurrentAnimatorStateInfo(0).normalizedTime >= 1f;
     }
+
+    public bool IsAnimName(string name)
+	{
+        return animator.GetCurrentAnimatorStateInfo(0).IsName(name);
+	}
 }

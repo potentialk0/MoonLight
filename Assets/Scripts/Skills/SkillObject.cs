@@ -4,22 +4,30 @@ using UnityEngine;
 
 public abstract class SkillObject : MonoBehaviour
 {
-    public Skill skill;
+    public SkillData skillData;
+	bool isChangeToP = false;
+	protected Collider collider;
+	protected float destroyTime = 0;
+
+	private void Awake()
+	{
+		collider = GetComponent<Collider>();
+	}
 
 	private void OnTriggerEnter(Collider other)
 	{
 		if(other.tag == "Enemy")
 		{
             if(other.GetComponent<StatContainer>() != null)
-                other.GetComponent<StatContainer>().GetDamage(skill.value);
+                other.GetComponent<StatContainer>().GetDamage(skillData.value);
 
-            if(skill.onCollisionObject != null)
+            if(skillData.onCollisionObject != null)
 			{
-                GameObject obj = skill.onCollisionObject;
-                Instantiate(obj, transform.position, Quaternion.identity);
+                GameObject obj = skillData.onCollisionObject;
+                Instantiate(obj, collider.ClosestPoint(other.transform.position), Quaternion.identity);
 			}
 
-            Destroy(this.gameObject);
+            Destroy(this.gameObject, destroyTime);
 		}
 	}
 }

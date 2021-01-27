@@ -16,12 +16,13 @@ MonoBehaviour:
   _skillType: 0
   _description: 
   _skillObject: {fileID: 1542574793492440, guid: 59290ce33d8600b41953ed7c887f8641, type: 3}
-  _iconImage: {fileID: 0}
+  _iconImage: {fileID: 21300000, guid: 790e76a6e53f4964184316be3cfa0770, type: 3}
+  _animation: fireProjectile
   _sound: {fileID: 0}
   _value: 0
-  _baseCooldown: 0
+  _baseCooldown: 5
   _attackRange: 0
   _onCollisionObject: {fileID: 1774151147760336, guid: e3bace97eb6a6794d9b2a2659c3f9fef, type: 3}
-  _speed: 0
+  _speed: 20
   _bounds: 0
   _statMod: {fileID: 0}

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: pl
   m_EditorClassIdentifier: 
   _characterStats:
-  - _baseValue: 420
+  - _baseValue: 100
     _type: 0
     _statModifiers: []
-  - _baseValue: 30
+  - _baseValue: 100
     _type: 1
     _statModifiers: []
-  - _baseValue: 20
+  - _baseValue: -1
     _type: 2
     _statModifiers: []
   - _baseValue: -1

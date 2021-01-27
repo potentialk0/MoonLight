@@ -9655,11 +9655,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4356512069367862}
-  - component: {fileID: 114492069119335430}
-  - component: {fileID: 65919842859101282}
   - component: {fileID: 54266780094200742}
+  - component: {fileID: -4303245020632626772}
+  - component: {fileID: 4952372197658830539}
   m_Layer: 0
-  m_Name: vfx_Projectile_Firefrost01_Green_Mobile
+  m_Name: GreenFrost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9690,47 +9690,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114492069119335430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1284132934340704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12ba759cd568c0e47a7018ab70867a0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bounce: 0
-  bounceForce: 10
-  speed: 20
-  accuracy: 95
-  fireRate: 2
-  muzzlePrefab: {fileID: 1950821157413962, guid: fb5ba37c59a9a284f86bdcd397b06776, type: 3}
-  hitPrefab: {fileID: 1950591616734958, guid: e88fc598e191ba044a72322f3dae817e, type: 3}
-  shotSFX: {fileID: 0}
-  hitSFX: {fileID: 0}
-  trails:
-  - {fileID: 1923874584220796}
-  - {fileID: 1648368050655372}
-  - {fileID: 1597409352201998}
-  - {fileID: 1952093243893064}
-  - {fileID: 1927533452590204}
-  - {fileID: 1480510923958412}
---- !u!65 &65919842859101282
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1284132934340704}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.5, y: 0.5, z: 0.5}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &54266780094200742
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9747,6 +9706,32 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-4303245020632626772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284132934340704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab2dc13856935b14a84ae5c88dca16bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skillData: {fileID: 11400000, guid: 4b27ec68aae551541b54674fe75dd74f, type: 2}
+--- !u!135 &4952372197658830539
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1284132934340704}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.6
+  m_Center: {x: 0, y: 0, z: 3.2}
 --- !u!1 &1305205187915668
 GameObject:
   m_ObjectHideFlags: 0

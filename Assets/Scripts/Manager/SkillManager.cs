@@ -19,44 +19,57 @@ public class SkillManager : MonoBehaviour
         }
     }
 
-    [SerializeField]
-    Slot[] skillSlots;
-    [SerializeField]
-    GameObject[] skills;
-    
-    public GameObject effect;
-    public GameObject player;
+    PlayerController player;
+    bool isGlobalCooldown = false;
+    float globalCooldown = 1.0f;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-		for (int i = 0; i < skillSlots.Length; i++)
-		{
-            //skillSlots[i].GetComponent<Button>().onClick.AddListener(delegate { player.GetComponent<PlayerController>().ChangeState(STATE.ATTACK); });
-        }
-        
-	}
+    public static bool isAutoAttacking = false;
 
-    // Update is called once per frame
-    void Update()
+    public List<SkillIcon> allSkills = new List<SkillIcon>();
+    public static SkillIcon currentSkillIcon = new SkillIcon();
+    public static List<SkillIcon> currentSkillIconList = new List<SkillIcon>();
+    public static Queue<SkillIcon> skillIconQueue = new Queue<SkillIcon>();
+
+    public static SkillIcon currentUISkill;
+
+    private void Awake()
     {
-        
+        player = GameObject.Find("PlayerObject").GetComponent<PlayerController>();
     }
 
-    void ShowInt(int a)
+	private void Update()
 	{
-        Debug.Log(a);
+		if(player.currentState == STATE.ATTACK)
+		{
+            AutoSkill();
+		}
+        if(Input.GetKeyDown(KeyCode.Space))
+		{
+            Debug.Log("---------- Skills are ----------");
+            ShowSkill();
+		}
 	}
 
-    void UseSkill()
+    // skillData를 가지고 있는 게 아니라 skillIcon을 가지고 있어야 한다~
+    void AutoSkill()
 	{
-        Debug.Log("Skill Used!!");
-        GameObject obj = effect;
-        Instantiate(obj, player.transform.position, player.transform.rotation);
+        if(isGlobalCooldown == true)
+		{
+
+		}
 	}
 
-    void UseSkill(int a)
+	public static void ShowSkill()
 	{
-        Instantiate(skills[a]);
+        for(int i = 0; i < currentSkillIconList.Count; i++)
+		{
+            Debug.Log(currentSkillIconList[i].skillData.name);
+		}
 	}
+
+    public static void UseSkill()
+    {
+        GameObject obj = currentSkillIcon.skillData.skillObject;
+        Instantiate(obj);
+    }
 }
