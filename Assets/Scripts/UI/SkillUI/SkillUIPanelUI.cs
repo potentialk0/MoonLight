@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SkillUIPanelUI : MonoBehaviour
 {
+    List<SkillShortcutSlotUI> _UIshortcut;
+
+    public List<SkillShortcutSlotUI> UIshortcut { get; }
+
     // Start is called before the first frame update
     void Start()
     {

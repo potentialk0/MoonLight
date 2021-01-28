@@ -26,7 +26,7 @@ public class SkillManager : MonoBehaviour
     public static bool isAutoAttacking = false;
 
     public List<SkillIcon> allSkills = new List<SkillIcon>();
-    public static SkillIcon currentSkillIcon = new SkillIcon();
+    public static SkillIcon currentSkillIcon;
     public static List<SkillIcon> currentSkillIconList = new List<SkillIcon>();
     public static Queue<SkillIcon> skillIconQueue = new Queue<SkillIcon>();
 

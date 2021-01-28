@@ -19,6 +19,7 @@ public class SkillUISlot : Slot, IPointerClickHandler
         _slotType = SLOTTYPE.UI;
         skillImage = GetComponentsInChildren<Image>();
         skillImage[1].sprite = icon.GetComponent<SkillIcon>().skillData.iconImage;
+        skillImage[1].gameObject.GetComponent<RectTransform>().localScale = new Vector3(0.8f, 0.8f, 0.8f);
     }
 
     // Start is called before the first frame update
