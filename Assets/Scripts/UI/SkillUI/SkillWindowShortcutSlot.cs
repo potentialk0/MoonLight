@@ -8,7 +8,7 @@ public enum SKILLSHORTCUTSTATE
     IDLE, SELECTED,
 }
 
-public class SkillShortcutSlotUI : MonoBehaviour
+public class SkillWindowShortcutSlot : MonoBehaviour
 {
     SKILLSHORTCUTSTATE state;
     public Sprite idleImage;
@@ -61,7 +61,7 @@ public class SkillShortcutSlotUI : MonoBehaviour
 
     void Idle()
     {
-        
+
     }
 
     void Selected()

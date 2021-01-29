@@ -5,7 +5,7 @@ using UnityEngine;
 public class SkillShortcutPanelUI : MonoBehaviour
 {
     List<SkillIcon> skillIcons;
-    SkillUISlot selectedSkillUISlot;
+    SkillWindowSlot selectedSkillUISlot;
 
     // Start is called before the first frame update
     void Start()

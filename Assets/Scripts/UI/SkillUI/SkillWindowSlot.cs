@@ -4,13 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class SkillUISlot : Slot, IPointerClickHandler
+public class SkillWindowSlot : Slot, IPointerClickHandler
 {
     Image[] skillImage;
 
 	public void OnPointerClick(PointerEventData eventData)
 	{
         SkillManager.currentUISkill = icon.GetComponent<SkillIcon>();
+        SkillWindow.SelectSkill(this);
 	}
 
 	private void Awake()

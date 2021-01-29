@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemUISlot : Slot
+public class ItemWindowSlot : Slot
 {
 	private void Awake()
 	{
