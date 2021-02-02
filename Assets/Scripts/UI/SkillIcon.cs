@@ -42,7 +42,7 @@ public class SkillIcon : Icon
             transform.SetAsLastSibling();
         }
 
-        if (isCoolDown == false && UI.GetCurrentSlot().slotType == SLOTTYPE.SHORTCUT)
+        if (isCoolDown == false)// && UI.GetCurrentSlot().slotType == SLOTTYPE.SHORTCUT)
         {
             isCoolDown = true;
             image.fillAmount = 1;

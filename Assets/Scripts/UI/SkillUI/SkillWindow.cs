@@ -28,7 +28,7 @@ public class SkillWindow : MonoBehaviour
     }
 
     private static SkillWindowSlot selectedSkillSlot = null;
-    public static List<SkillWindowShortcutSlot> UIshortcut = new List<SkillWindowShortcutSlot>();
+    public List<SkillWindowShortcutSlot> UIshortcut = new List<SkillWindowShortcutSlot>();
 
     // Start is called before the first frame update
     void Start()
