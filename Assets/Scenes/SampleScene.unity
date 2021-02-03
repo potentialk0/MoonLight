@@ -3457,6 +3457,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 623aff86eda74c242a28f06e464ff9c4, type: 3}
+--- !u!114 &1198785690 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 638758461635570778, guid: dc2611adb9031404d88828cd93286bb8, type: 3}
+  m_PrefabInstance: {fileID: 638758461234199297}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5af179dd0a8da9040810beda4b425f00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1221043281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4459,6 +4470,34 @@ PrefabInstance:
       propertyPath: _icon
       value: 
       objectReference: {fileID: 1261125178}
+    - target: {fileID: 638758460668431920, guid: dc2611adb9031404d88828cd93286bb8, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 638758460668431920, guid: dc2611adb9031404d88828cd93286bb8, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 638758460668431920, guid: dc2611adb9031404d88828cd93286bb8, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1198785690}
+    - target: {fileID: 638758460668431920, guid: dc2611adb9031404d88828cd93286bb8, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 638758460668431920, guid: dc2611adb9031404d88828cd93286bb8, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 638758460668431920, guid: dc2611adb9031404d88828cd93286bb8, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SkillWindow, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 638758460668431920, guid: dc2611adb9031404d88828cd93286bb8, type: 3}
+      propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 638758460675088490, guid: dc2611adb9031404d88828cd93286bb8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4531,6 +4570,30 @@ PrefabInstance:
       propertyPath: _icon
       value: 
       objectReference: {fileID: 2018505513}
+    - target: {fileID: 638758461635570778, guid: dc2611adb9031404d88828cd93286bb8, type: 3}
+      propertyPath: UIshortcut.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 638758461635570778, guid: dc2611adb9031404d88828cd93286bb8, type: 3}
+      propertyPath: UIshortcut.Array.data[0]
+      value: 
+      objectReference: {fileID: 328305932}
+    - target: {fileID: 638758461635570778, guid: dc2611adb9031404d88828cd93286bb8, type: 3}
+      propertyPath: UIshortcut.Array.data[1]
+      value: 
+      objectReference: {fileID: 330545918}
+    - target: {fileID: 638758461635570778, guid: dc2611adb9031404d88828cd93286bb8, type: 3}
+      propertyPath: UIshortcut.Array.data[2]
+      value: 
+      objectReference: {fileID: 1331520769}
+    - target: {fileID: 638758461635570778, guid: dc2611adb9031404d88828cd93286bb8, type: 3}
+      propertyPath: UIshortcut.Array.data[3]
+      value: 
+      objectReference: {fileID: 1055095273}
+    - target: {fileID: 638758461635570778, guid: dc2611adb9031404d88828cd93286bb8, type: 3}
+      propertyPath: UIshortcut.Array.data[4]
+      value: 
+      objectReference: {fileID: 1674650326}
     - target: {fileID: 638758461932544052, guid: dc2611adb9031404d88828cd93286bb8, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

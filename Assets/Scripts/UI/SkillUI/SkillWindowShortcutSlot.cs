@@ -3,74 +3,56 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum SKILLSHORTCUTSTATE
-{
-    IDLE, SELECTED,
-}
-
 public class SkillWindowShortcutSlot : MonoBehaviour
 {
-    SKILLSHORTCUTSTATE state;
     public Sprite idleImage;
     public Sprite selectedImage;
 
     SkillIcon currentSkill;
     Sprite currentImage;
 
+    float scaleRange = 0.05f;
+    float scaleSpeed = 15.0f;
+    float t = 0;
+
+    bool isSelected = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        state = SKILLSHORTCUTSTATE.IDLE;
         currentImage = GetComponent<Image>().sprite;
     }
 
     // Update is called once per frame
     void Update()
     {
-        ProcessState();
+        
     }
 
-    void ProcessState()
+    public void OnSelected()
     {
-        switch (state)
+        
+        if (isSelected == false)
+            StartCoroutine(ChangeScale());
+        isSelected = true;
+    }
+
+    public void OnClicked()
+    {
+        isSelected = false;
+
+        StopCoroutine(ChangeScale());
+        transform.localScale = new Vector3(1, 1, 1);
+    }
+
+    IEnumerator ChangeScale()
+    {
+        while (true)
         {
-            case SKILLSHORTCUTSTATE.IDLE:
-                Idle();
-                break;
-            case SKILLSHORTCUTSTATE.SELECTED:
-                Selected();
-                break;
+            t += Time.deltaTime;
+            float offset = Mathf.Sin(t * scaleSpeed) * scaleRange;
+            transform.localScale = new Vector3(1 + offset, 1 + offset, 1 + offset);
+            yield return null;
         }
-    }
-
-    public void ChangeState(SKILLSHORTCUTSTATE s)
-    {
-        if (state == s) return;
-        state = s;
-
-        switch (state)
-        {
-            case SKILLSHORTCUTSTATE.IDLE:
-                currentImage = idleImage;
-                break;
-            case SKILLSHORTCUTSTATE.SELECTED:
-                currentImage = selectedImage;
-                break;
-        }
-    }
-
-    void Idle()
-    {
-
-    }
-
-    void Selected()
-    {
-        ImageEffect();
-    }
-
-    void ImageEffect()
-    {
-        // 커졌다 작아졌다
     }
 }

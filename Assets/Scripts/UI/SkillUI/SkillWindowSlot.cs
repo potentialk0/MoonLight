@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.Events;
 
 public class SkillWindowSlot : Slot, IPointerClickHandler
 {
     Image[] skillImage;
 
+    public UnityEvent OnClick;
+
 	public void OnPointerClick(PointerEventData eventData)
 	{
-        SkillManager.currentUISkill = icon.GetComponent<SkillIcon>();
+        OnClick.Invoke();
+        SkillWindow.currentUISkill = icon.GetComponent<SkillIcon>();
         SkillWindow.SelectSkill(this);
 	}
 

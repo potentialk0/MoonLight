@@ -30,7 +30,7 @@ public class SkillManager : MonoBehaviour
     public static List<SkillIcon> currentSkillIconList = new List<SkillIcon>();
     public static Queue<SkillIcon> skillIconQueue = new Queue<SkillIcon>();
 
-    public static SkillIcon currentUISkill;
+    
 
     private void Awake()
     {

@@ -26,7 +26,7 @@ public class SkillWindow : MonoBehaviour
             return instance;
         }
     }
-
+    public static SkillIcon currentUISkill;
     private static SkillWindowSlot selectedSkillSlot = null;
     public List<SkillWindowShortcutSlot> UIshortcut = new List<SkillWindowShortcutSlot>();
 
@@ -50,5 +50,13 @@ public class SkillWindow : MonoBehaviour
     public static SkillWindowSlot GetSelectedSkill()
     {
         return selectedSkillSlot;
+    }
+
+    public void OnClicked()
+    {
+        for(int i = 0; i < UIshortcut.Count; i++)
+        {
+            UIshortcut[i].OnSelected();
+        }
     }
 }
