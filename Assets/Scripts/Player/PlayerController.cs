@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //transform.rotation = Quaternion.LookRotation(transform.forward);
         transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
         text.text = _currentState.ToString();
 
@@ -132,7 +131,7 @@ public class PlayerController : MonoBehaviour
     private void AttackState()
     {
         //hasArrivedToDestination = true;
-        if (playerModel.IsAnimName("fireProjectile") && playerModel.IsAnimEnd() && !SkillManager.isAutoAttacking)
+        if (playerModel.IsAnimName("fireProjectile") && playerModel.IsAnimEnd())// && !SkillManager.isAutoAttacking)
         {
             ChangeState(STATE.IDLE);
         }

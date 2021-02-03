@@ -5,25 +5,23 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
-public class SkillWindowSlot : Slot, IPointerClickHandler
+public class SkillWindowSlot : MonoBehaviour, IPointerClickHandler
 {
+    [SerializeField]
+    SkillData _skillData;
+    public SkillData skillData { get => _skillData; }
     Image[] skillImage;
-
-    public UnityEvent OnClick;
 
 	public void OnPointerClick(PointerEventData eventData)
 	{
-        OnClick.Invoke();
-        SkillWindow.currentUISkill = icon.GetComponent<SkillIcon>();
-        SkillWindow.SelectSkill(this);
+        SkillWindow.SelectSkillSlot(this);
+        SkillWindow.StartShortcutAnim();
 	}
 
 	private void Awake()
     {
-        _iconType = ICONTYPE.SKILL;
-        _slotType = SLOTTYPE.UI;
         skillImage = GetComponentsInChildren<Image>();
-        skillImage[1].sprite = icon.GetComponent<SkillIcon>().skillData.iconImage;
+        skillImage[1].sprite = _skillData.iconImage;
         skillImage[1].gameObject.GetComponent<RectTransform>().localScale = new Vector3(0.8f, 0.8f, 0.8f);
     }
 
