@@ -38,7 +38,7 @@ public class SkillWindow : MonoBehaviour
     private static List<SkillShortcutSlot> skillShortcuts = new List<SkillShortcutSlot>();
 
     RectTransform rect;
-    float movespeed = 1500f;
+    float movespeed = 2000f;
 
     // Start is called before the first frame update
     void Start()

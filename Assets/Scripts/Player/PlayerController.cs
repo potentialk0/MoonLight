@@ -50,13 +50,13 @@ public class PlayerController : MonoBehaviour
             {
                 skills[i].UseSkill();
                 isGlobalCooldown = true;
+                return;
             }
         }
     }
 
     void GlobalCoolDown()
     {
-        Debug.Log(globalCooldown);
         if (isGlobalCooldown == true)
         {
             globalCooldown -= Time.deltaTime;
