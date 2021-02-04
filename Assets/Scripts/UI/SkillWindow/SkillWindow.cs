@@ -13,6 +13,7 @@ public class SkillWindow : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(this.gameObject);
         }
+        
     }
 
     public static SkillWindow Instance
@@ -37,6 +38,7 @@ public class SkillWindow : MonoBehaviour
     private static List<SkillShortcutSlot> skillShortcuts = new List<SkillShortcutSlot>();
 
     RectTransform rect;
+    float movespeed = 1500f;
 
     // Start is called before the first frame update
     void Start()
@@ -45,9 +47,7 @@ public class SkillWindow : MonoBehaviour
         skillWindowShortcuts = _skillWindowShortcuts;
         skillShortcuts = _skillShortcuts;
         SyncSkillShortcuts();
-        Debug.Log(rect.anchoredPosition.x);
-        Debug.Log(rect.anchoredPosition.y);
-        StartCoroutine(Show());
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -105,14 +105,46 @@ public class SkillWindow : MonoBehaviour
 		}
 	}
 
-    IEnumerator Show()
+    public void ActivateSkillWindow()
+    {
+        gameObject.SetActive(true);
+        StartCoroutine(Activate());
+    }
+
+    public void DeactivateSkillWindow()
+    {
+        StartCoroutine(Deactivate());
+    }
+
+    IEnumerator Activate()
 	{
+        
         while(rect.anchoredPosition.x > -300)
 		{
-            transform.position -= transform.right * 1000 * Time.deltaTime;
+            transform.position -= transform.right * movespeed * Time.deltaTime;
             if (rect.anchoredPosition.x <= -300)
+            {
                 rect.anchoredPosition = new Vector2(-300, -540);
+                Debug.Log("is active");
+                break;
+            }
             yield return null;
 		}
 	}
+
+    IEnumerator Deactivate()
+    {
+        while (rect.anchoredPosition.x < 300)
+        {
+            transform.position += transform.right * movespeed * Time.deltaTime;
+            if (rect.anchoredPosition.x >= 300)
+            {
+                rect.anchoredPosition = new Vector2(300, -540);
+                Debug.Log("is not active");
+                gameObject.SetActive(false);
+                break;
+            }
+            yield return null;
+        }
+    }
 }

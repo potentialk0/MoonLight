@@ -56,7 +56,7 @@ public class StatContainer : MonoBehaviour
         currMP = (int)(maxMP * mpRatio);
     }
 
-    public void GetDamage(int value)
+    public void TakeDamage(int value)
 	{
         currHP -= value;
 	}

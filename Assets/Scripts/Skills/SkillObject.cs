@@ -16,18 +16,21 @@ public abstract class SkillObject : MonoBehaviour
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if(other.tag == "Enemy")
+		if (other.tag == "Enemy")
 		{
             if(other.GetComponent<StatContainer>() != null)
-                other.GetComponent<StatContainer>().GetDamage(skillData.value);
+                other.GetComponent<StatContainer>().TakeDamage(skillData.value);
+		}
 
-            if(skillData.onCollisionObject != null)
-			{
+        if (other.tag != "Player")
+        {
+            if (skillData.onCollisionObject != null)
+            {
                 GameObject obj = skillData.onCollisionObject;
                 Instantiate(obj, collider.ClosestPoint(other.transform.position), Quaternion.identity);
-			}
+            }
 
             Destroy(this.gameObject, destroyTime);
-		}
-	}
+        }
+    }
 }

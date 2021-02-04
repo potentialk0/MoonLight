@@ -34,6 +34,41 @@ public class PlayerController : MonoBehaviour
 
     TextMeshProUGUI text;
 
+    [SerializeField]
+    List<SkillShortcutSlot> skills = new List<SkillShortcutSlot>(5);
+    Queue<SkillShortcutSlot> skillQueue = new Queue<SkillShortcutSlot>();
+
+    float globalCooldown = 2.0f;
+    bool isGlobalCooldown = false;
+
+    void AutoSkill()
+    {
+        GlobalCoolDown();
+        for(int i = 0; i < 5; i++)
+        {
+            if(skills[i] != null && isGlobalCooldown == false && skills[i].isCoolDown == false)
+            {
+                skills[i].UseSkill();
+                isGlobalCooldown = true;
+            }
+        }
+    }
+
+    void GlobalCoolDown()
+    {
+        Debug.Log(globalCooldown);
+        if (isGlobalCooldown == true)
+        {
+            globalCooldown -= Time.deltaTime;
+
+            if (globalCooldown <= 0)
+            {
+                globalCooldown = 2;
+                isGlobalCooldown = false;
+            }
+        }
+    }
+
     private void Awake()
     {
         text = GameObject.Find("stateText").GetComponent<TextMeshProUGUI>();
@@ -52,9 +87,10 @@ public class PlayerController : MonoBehaviour
 
         if (targetObject != null)
             Debug.Log(targetObject.name);
-        
-        targetObject = UI.GetEnemy();
-        SetPath();
+
+        //targetObject = UI.GetEnemy();
+        AutoSkill();
+        OnClick();
         ProcessState();
     }
 
@@ -142,7 +178,7 @@ public class PlayerController : MonoBehaviour
         throw new NotImplementedException();
     }
 
-    void SetPath()
+    void OnClick()
     {
         if (Input.GetMouseButtonDown(1))
         {
@@ -154,29 +190,26 @@ public class PlayerController : MonoBehaviour
             {
                 if (hit.transform.tag == "Ground")
                 {
-                    cornerNum = 0;
-                    destination = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-                    if (NavMesh.CalculatePath(transform.position, destination, NavMesh.AllAreas, path))
-                    {
-                        corners = path.corners;
-                        ChangeState(STATE.MOVE);
-                        return;
-                    }
+                    SetPath(hit);
                 }
                 else if(hit.transform.tag == "Enemy")
 				{
-                    cornerNum = 0;
                     SetTargetObject(hit.transform.gameObject);
-                    destination = new Vector3(hit.point.x, transform.position.y, hit.point.z);
-                    if (NavMesh.CalculatePath(transform.position, destination, NavMesh.AllAreas, path))
-                    {
-                        corners = path.corners;
-                        ChangeState(STATE.MOVE);
-                        return;
-                    }
+                    SetPath(hit);
 				}
             }
-            
+        }
+    }
+
+    void SetPath(RaycastHit hit)
+    {
+        cornerNum = 0;
+        destination = new Vector3(hit.point.x, transform.position.y, hit.point.z);
+        if (NavMesh.CalculatePath(transform.position, destination, NavMesh.AllAreas, path))
+        {
+            corners = path.corners;
+            ChangeState(STATE.MOVE);
+            return;
         }
     }
 

@@ -15,13 +15,13 @@ public class SkillShortcutSlot : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     Sprite idleImage;
 
-    bool isCoolDown = false;
+    bool _isCoolDown = false;
+    public bool isCoolDown { get => _isCoolDown; }
 
     // Start is called before the first frame update
     void Start()
     {
-        currentImage = GetComponent<Image>();
-        DisplayUI();
+        
     }
 
     // Update is called once per frame
@@ -42,7 +42,7 @@ public class SkillShortcutSlot : MonoBehaviour, IPointerClickHandler
         {
             currentImage.sprite = _currentSkill.iconImage;
         }
-        else
+        else if(_currentSkill == null)
         {
             currentImage.sprite = idleImage;
         }
@@ -50,34 +50,34 @@ public class SkillShortcutSlot : MonoBehaviour, IPointerClickHandler
 
 	public void OnPointerClick(PointerEventData eventData)
 	{
-        if (isCoolDown == false)
-        {
-            isCoolDown = true;
-            currentImage.fillAmount = 1;
-            UseSkill();
-        }
+        UseSkill();
     }
 
     void CoolDown()
     {
-        if (isCoolDown == true)
+        if (_isCoolDown == true)
         {
             currentImage.fillAmount -= 1 / _currentSkill.baseCooldown * Time.deltaTime;
 
             if (currentImage.fillAmount <= 0)
             {
                 currentImage.fillAmount = 1;
-                isCoolDown = false;
+                _isCoolDown = false;
             }
         }
     }
 
-    void UseSkill()
-	{
-        if(_currentSkill != null)
-		{
-            GameObject obj = _currentSkill.skillObject;
-            Instantiate(obj);
+    public void UseSkill()
+    {
+        if (_isCoolDown == false)
+        {
+            _isCoolDown = true;
+            currentImage.fillAmount = 1;
+            if (_currentSkill != null)
+            {
+                GameObject obj = _currentSkill.skillObject;
+                Instantiate(obj);
+            }
         }
-	}
+    }
 }
